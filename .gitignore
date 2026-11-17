@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+.DS_Store
+# records of real conversations, if this checkout is itself an enabled skill
+evolve/

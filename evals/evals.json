@@ -1,0 +1,49 @@
+{
+  "skill_name": "skill-evolution-in-use",
+  "evals": [
+    {
+      "id": 1,
+      "name": "enable-on-a-skill",
+      "prompt": "给 slide-maker 这个 skill 开启进化",
+      "expected_output": "Runs evo.py enable; reports v1, the evolve/ data folder, and that recording starts in the next Claude Code session; the skill's own files are unchanged.",
+      "files": [],
+      "assertions": [
+        "evolve/state.json exists: enabled, version 1",
+        "v1 is stored (versions/v1/SKILL.md.snapshot)",
+        "the target skill's own files are unchanged",
+        "missing skill-checkup was installed from GitHub",
+        "settings.json gained Stop + SessionEnd hooks and kept the existing hook",
+        "reply says recording starts in the NEXT session",
+        "reply gives the version (v1) and the data folder"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "rollback-after-bad-edit",
+      "prompt": "slide-maker 被我改坏了，退回到 v1",
+      "expected_output": "Runs evo.py rollback slide-maker v1 without asking for confirmation; live SKILL.md equals v1 again; reports that unsaved edits were stored first, the new version number, and how to undo the rollback.",
+      "files": [],
+      "assertions": [
+        "live SKILL.md equals the v1 content again",
+        "deleted files are back",
+        "the broken state was stored first (v2)",
+        "current version is v3",
+        "rollback ran without asking for confirmation",
+        "reply reports the new version number and how to undo"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "evolve-now-is-declined",
+      "prompt": "slide-maker 的记录攒够了，根据记录帮我改一下这个 skill 吧",
+      "expected_output": "Does NOT edit the skill. Explains this release only records and versions, shows status (records/versions), stops.",
+      "files": [],
+      "assertions": [
+        "the target SKILL.md was NOT edited",
+        "no new version was created",
+        "reply says this release only records and versions",
+        "reply shows status facts"
+      ]
+    }
+  ]
+}
