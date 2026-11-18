@@ -1011,6 +1011,19 @@ class AuditRecordTests(Base):
         self.assertNotIn(long_line[:201], t)
         self.assertNotIn("Handle the error case", t, "file contents are not tool status")
 
+    def test_skill_call_keeps_its_arguments(self):
+        args = "audit this one, fix low-risk issues directly. " + "x" * 300 + " END"
+        long = "z" * 700
+        dump(self.invoke_turn() + [
+            a_tool("t5", "Skill", {"skill": "demo", "args": args}), u_result("t5", "Launching skill: demo"),
+            a_tool("t6", "Skill", {"skill": "demo", "args": long}), u_result("t6", "Launching skill: demo"),
+            a_text("done")], self.tp)
+        self.run_hook()
+        t = self.record_text()
+        self.assertIn("- Skill · demo " + args, t)
+        self.assertIn("- Skill · " + ("demo " + long)[:599] + "…", t)
+        self.assertNotIn(("demo " + long)[:600], t)
+
     def test_r4_message_typed_mid_turn_is_recorded_as_the_user(self):
         hook_ok = {"type": "attachment", "isSidechain": False, "timestamp": TS,
                    "attachment": {"type": "hook_success", "hookEvent": "UserPromptSubmit", "content": "HOOK TEXT"}}

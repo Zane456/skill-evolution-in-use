@@ -4,7 +4,7 @@
 
 # skill-evolution-in-use
 
-<img src="assets/hero-zh.png" alt="skill-evolution-in-use：记录 Claude Code skill 的真实使用，任意版本可退回" width="640" />
+<img src="docs/hero-zh.png" alt="skill-evolution-in-use：记录 Claude Code skill 的真实使用，任意版本可退回" width="640" />
 
 **用到某个 Claude Code skill 的真实对话全部留档，这个 skill 的每个版本都能退回。**
 
@@ -105,8 +105,8 @@ skill-evolution-in-use/
 ├── evals/
 │   └── evals.json           # 开发时用的 3 道测试题和检查项
 ├── tests/
-│   └── test_p1.py           # 100 个单元测试，都在临时文件夹里跑，不碰 ~/.claude
-├── assets/
+│   └── test_p1.py           # 101 个单元测试，都在临时文件夹里跑，不碰 ~/.claude
+├── docs/
 │   ├── hero-en.png          # 英文 README 的顶部图
 │   └── hero-zh.png          # 本页的顶部图
 ├── .gitignore               # 让 git 忽略 Python 缓存和 evolve/ 文件夹

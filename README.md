@@ -4,7 +4,7 @@ English | [简体中文](README.zh-CN.md)
 
 # skill-evolution-in-use
 
-<img src="assets/hero-en.png" alt="skill-evolution-in-use: records real Claude Code skill usage and restores any skill version" width="640" />
+<img src="docs/hero-en.png" alt="skill-evolution-in-use: records real Claude Code skill usage and restores any skill version" width="640" />
 
 **Record every real conversation that uses a Claude Code skill, and roll that skill back to any version.**
 
@@ -101,8 +101,8 @@ skill-evolution-in-use/
 ├── evals/
 │   └── evals.json           # three test prompts with checks, used while building the skill
 ├── tests/
-│   └── test_p1.py           # 100 unit tests; they run in temporary folders and never touch ~/.claude
-├── assets/
+│   └── test_p1.py           # 101 unit tests; they run in temporary folders and never touch ~/.claude
+├── docs/
 │   ├── hero-en.png          # banner for this README
 │   └── hero-zh.png          # banner for the Chinese README
 ├── .gitignore               # keeps Python caches and any evolve/ folder out of git

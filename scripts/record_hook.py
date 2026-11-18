@@ -25,6 +25,7 @@ import evo_core as core  # noqa: E402
 MAX_TEXT = 20000      # one message; longer ones are cut with a note
 MAX_ERR = 2000        # one tool error
 MAX_WARN = 200        # one warning line kept from a successful tool result
+MAX_SKILL_ARGS = 600  # a Skill call's arguments: the instruction the skill was given
 WARN_LINES = 3
 SESSION_LOCK_WAIT = 2.0
 CMD_RE = re.compile(r"<command-name>/?([\w.:一-鿿-]+)</command-name>")
@@ -321,7 +322,7 @@ def tool_summary(name: str, inp: dict) -> str:
     if name in ("Read", "Edit", "Write", "NotebookEdit"):
         return short_path(str(inp.get("file_path") or inp.get("notebook_path") or ""))
     if name == "Skill":
-        return one_line(f"{inp.get('skill', '')} {inp.get('args') or ''}".strip(), 100)
+        return one_line(f"{inp.get('skill', '')} {inp.get('args') or ''}".strip(), MAX_SKILL_ARGS)
     for k in ("description", "pattern", "query", "url", "prompt", "path", "command"):
         if isinstance(inp.get(k), str) and inp[k].strip():
             return one_line(short_path(inp[k]))

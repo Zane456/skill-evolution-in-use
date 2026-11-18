@@ -36,7 +36,8 @@ Append-only. Written by `scripts/record_hook.py` after each assistant reply.
   running; part of that turn, not a new one. A message a plugin relays as
   the user's (e.g. typed in a side pane) is also under **User**.
 - Tool line summary: Bash uses its `description`; file tools use the path;
-  others use their first meaningful argument.
+  others use their first meaningful argument, cut at 140 chars. A Skill call
+  keeps its arguments up to 600 chars: they are the instruction the skill got.
 - `◆skill-file` = the call names a path inside the target skill folder (also
   written as `~/…` or `$HOME/…`); `evolve/` and sibling folders do not count.
 - `❌` = the tool returned an error. The error text follows, cut at 2000 chars.
